@@ -1,0 +1,19 @@
+{
+  "name": "gitlink",
+  "version": "0.0.1",
+  "description": "A basic node package installer for Git repos.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dylan Thomson",
+  "license": "MIT",
+  "dependencies": {
+    "can-symlink": "^1.0.0",
+    "colors": "^1.1.2",
+    "del": "^3.0.0",
+    "fs-symlink": "^1.2.1",
+    "simple-git": "^1.77.0",
+    "yargs": "^9.0.1"
+  }
+}
