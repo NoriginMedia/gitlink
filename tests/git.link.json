@@ -1,10 +1,11 @@
 {
 	"nmplayer": {
+		"skip": true,
 		"name": "nmplayer",
 		"repository": "https://github.com/AspiroTV/module-player.git",
 		"tag": "v0.0.3-beta.3",
 		"options": {
-			"useLocalLink": true
+			"useLocalLink": false
 		},
 		"paths": {
 			"localLinkPath": "../module-player",
@@ -12,11 +13,12 @@
 		}
 	},
 	"norigin-cwm": {
+		"skip": false,
 		"name": "norigin-cwm",
 		"repository": "https://github.com/AspiroTV/norigin-cwm.git",
 		"branch": "master",
 		"options": {
-			"useLocalLink": true
+			"useLocalLink": false
 		},
 		"paths": {
 			"localLinkPath": "../norigin-cwm",
@@ -24,6 +26,7 @@
 		}
 	},
 	"norigin-bridge": {
+		"skip": true,
 		"name": "norigin-bridge",
 		"repository": "https://github.com/AspiroTV/norigin-bridge.git",
 		"branch": "master",
@@ -32,6 +35,7 @@
 		}
 	},
 	"norigin-fingerprint": {
+		"skip": true,
 		"name": "norigin-fingerprint",
 		"repository": "https://github.com/AspiroTV/norigin-fingerprint-module.git",
 		"branch": "master",

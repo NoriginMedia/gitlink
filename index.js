@@ -1,4 +1,4 @@
-let colors = require('colors');
+require('colors');
 const path = require('path');
 const projectRoot = process.cwd();
 const fs = require("fs");
@@ -10,34 +10,41 @@ const link = require('fs-symlink');
 
 if(canSymlink()) {
 	let linkConig = argv.config || './git.link.json';
+	console.log(linkConig);
 	let absoluteConfigPath = path.join(projectRoot, linkConig);
 	if (!fs.existsSync(absoluteConfigPath)) {
 		return console.error("GitLink Error: No file found at: ".red + absoluteConfigPath.yellow);
 	}
 
-	console.log("--------------".blue);
-	console.log("|".blue + " GitLinking ".blue + "| ".blue);
-	console.log("--------------".blue);
+	console.log(("--------------").blue);
+	console.log(("| GitLinking |").blue);
+    console.log(("--------------").blue);
 	let gitPackages = require(absoluteConfigPath);
 	for(let name in gitPackages) {
 		let linkInfo = gitPackages[name];
-		isLocalLink(linkInfo).then(()=> {
-			isLocalRepoValid(linkInfo).then(()=> {
-				createLink(linkInfo).then(()=> {
-					console.log(
-						"Linking of package: ".blue + linkInfo["name"].green + " from ".blue +
-						linkInfo["paths"]["localLinkPath"].green + " successful".blue
-					);
-				}).catch((err)=>{
-					//console.error();
-				});
-			}).catch((err)=>{
-				console.error(err);
-			});
-		}).catch((err)=>{
-			console.error(err);
-			clonePackageRepo(linkInfo);
-		});
+
+		let skip = linkInfo["skip"];
+		if(!skip) {
+            isLocalLink(linkInfo).then(()=> {
+                isLocalRepoValid(linkInfo).then(()=> {
+                    createLink(linkInfo).then(()=> {
+                        console.log(
+                            "Linking of package: ".blue + linkInfo["name"].green + " from ".blue +
+                            linkInfo["paths"]["localLinkPath"].green + " successful".blue
+                        );
+                    }).catch((err)=>{
+                        //console.error();
+                    });
+                }).catch((err)=>{
+                    console.error(err);
+                });
+            }).catch((err)=>{
+                console.error(err);
+                clonePackageRepo(linkInfo);
+            });
+		} else {
+			console.log(("Skipping Git Package: " + linkInfo["name"]).green);
+		}
 	}
 } else {
 	console.error("GitLink Error. GitLink is unable to create symlinks in the current environment. ".red +

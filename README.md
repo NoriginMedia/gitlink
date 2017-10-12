@@ -10,6 +10,7 @@ Example GitLink Config.
 
 {
 	"nmplayer": {
+	    "skip": false
 		"name": "nmplayer",
 		"repository": "https://github.com/AspiroTV/module-player.git",
 		"tag": "v0.0.3-beta.3",
